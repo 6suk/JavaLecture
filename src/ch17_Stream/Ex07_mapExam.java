@@ -1,6 +1,8 @@
 package ch17_Stream;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class Ex07_mapExam {
@@ -15,6 +17,12 @@ public class Ex07_mapExam {
 		.mapToInt(s -> s.getScore())
 		.forEach(x -> System.out.println(x));
 		
+		List<String> list2 = new ArrayList<>(Arrays.asList("Apple","Banana","Melon","Grape","Strawberry"));
+		System.out.println(list2);
+		
+		list2.stream()
+		.map(s -> s.toUpperCase())
+		.forEach(s -> System.out.println(s));
 	}
 
 }
