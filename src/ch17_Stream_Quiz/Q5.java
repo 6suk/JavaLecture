@@ -14,6 +14,7 @@ public class Q5 {
 		/** 답 작성 코드 */
 		list.stream()
 		.filter(x -> x.toLowerCase().contains("java"))
+//		.filter(x -> x.toLowerCase().indexOf("java") >= 0)
 		.forEach(x -> System.out.println(x));
 	}
 
