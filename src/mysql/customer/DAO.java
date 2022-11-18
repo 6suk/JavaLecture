@@ -67,7 +67,7 @@ public class DAO {
 		Connection conn = myGetConn();
 		List<Customer> list = new ArrayList<>();
 		try {
-			String sql = "SELECT * FROM customer WHERE isDeleted = 0;";
+			String sql = "SELECT * FROM customer WHERE isDeleted = '0' ORDER BY regdate DESC;";
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
@@ -126,6 +126,8 @@ public class DAO {
 
 			pstm.close();
 			conn.close();
+			System.out.println("  [정보 수정 완료] " + "ID : " + c.getName() + " / Name : " + c.getName()
+			+" / regDate : " + c.getRegDate());
 		} catch (SQLException e) {
 			System.out.println("[오류] " + e.getMessage());
 		}
