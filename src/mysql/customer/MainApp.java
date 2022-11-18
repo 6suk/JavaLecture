@@ -79,6 +79,8 @@ public class MainApp {
 		System.out.print("  - 변경할 이름 입력 : ");
 		String name = br.readLine();
 		System.out.println();
+		Customer c = dao.getUserInfo(id);
+		System.out.println("  [기존 정보]"+ " ID : " + c.getUid() + " / Name : " + c.getName());
 		dao.updateUser2(id,name);
 	}
 	
