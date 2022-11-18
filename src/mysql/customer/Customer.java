@@ -9,6 +9,12 @@ public class Customer {
 
 	public Customer() {
 	}
+	
+	public Customer(String uid, String name) {
+		super();
+		this.uid = uid;
+		this.name = name;
+	}
 
 	public Customer(String uid, String name, LocalDate regDate, int isDeleted) {
 		super();
@@ -52,7 +58,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [" + uid + ", " + name + ", " + regDate + ", " + isDeleted + "]";
+		return uid + ", " + name + ", " + regDate + ", " + isDeleted;
 	}
 
 	
