@@ -2,7 +2,7 @@ package mysql.baseballPlayer;
 
 import java.time.LocalDate;
 
-public class DTO {
+public class Player {
 	private int num;
 	private String name;
 	private String position;
@@ -10,9 +10,9 @@ public class DTO {
 	private int height;
 	private int bye;
 	
-	public DTO() {}
+	public Player() {}
 	
-	public DTO(int num, String name, String position, LocalDate bDay, int height) {
+	public Player(int num, String name, String position, LocalDate bDay, int height) {
 		super();
 		this.num = num;
 		this.name = name;
@@ -21,7 +21,7 @@ public class DTO {
 		this.height = height;
 	}
 	
-	public DTO(int num, String name, String position, int height) {
+	public Player(int num, String name, String position, int height) {
 		super();
 		this.num = num;
 		this.name = name;
@@ -29,7 +29,7 @@ public class DTO {
 		this.height = height;
 	}
 	
-	public DTO(int num, String name, String position, LocalDate bDay, int height, int bye) {
+	public Player(int num, String name, String position, LocalDate bDay, int height, int bye) {
 		super();
 		this.num = num;
 		this.name = name;
