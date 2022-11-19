@@ -31,7 +31,7 @@ public class DAO {
 		}
 	}
 
-	/** DB 접속 - 완료 */
+	/** DB 접속 */
 	public Connection myGetConn() {
 		Connection conn = null;
 		try {
@@ -43,7 +43,7 @@ public class DAO {
 		return conn;
 	}
 
-	/** 1. 선수 목록 - 완료 */
+	/** 1. 선수 목록 */
 	public List<Player> getPlayerList() {
 		Connection conn = myGetConn();
 		String sql = "SELECT * FROM bplayer WHERE bye = 0 ORDER BY FIELD(POSITION,'투수','포수','내야수','외야수');";
@@ -72,7 +72,7 @@ public class DAO {
 		return playerList;
 	}
 
-	/** 1-1. 선수1명 목록 - 완료 */
+	/** 1-1. 선수1명 목록 */
 	public Player getPlayer(int num) {
 		Connection conn = myGetConn();
 		String sql = "SELECT * FROM bplayer WHERE number = ?;";
@@ -101,7 +101,7 @@ public class DAO {
 		return p;
 	}
 
-	/** 1-2. 방출된 선수 목록 - 완료 */
+	/** 1-2. 방출된 선수 목록 */
 	public List<Player> byePlayerList() {
 		Connection conn = myGetConn();
 		String sql = "SELECT * FROM bplayer WHERE bye = 1 ORDER BY FIELD(POSITION,'투수','포수','내야수','외야수');";
@@ -130,7 +130,7 @@ public class DAO {
 		return playerList;
 	}
 
-	/** 2. 선수 등록 - 완료 */
+	/** 2. 선수 등록 */
 	public void setPlayer(Player p) {
 		Connection conn = myGetConn();
 		String sql = "INSERT INTO bplayer VALUES(?, ?, ?, ?, ?, 0);";
@@ -152,7 +152,7 @@ public class DAO {
 		}
 	}
 
-	/** 3. 선수 정보 수정 - 완료 */
+	/** 3. 선수 정보 수정 */
 	public void updatePlayer(Player p) {
 		Connection conn = myGetConn();
 		String sql = "UPDATE bplayer SET `name` = ?, `position` = ?, height = ? WHERE number = ?;";

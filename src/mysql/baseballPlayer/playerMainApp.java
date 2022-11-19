@@ -9,7 +9,8 @@ import mysql.customer.Customer;
 public class playerMainApp {
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public static DAO dao = new DAO();
-
+	
+	/** 초기 화면 */
 	public static void main(String[] args) throws IOException {
 		boolean run = true;
 		while (run) {

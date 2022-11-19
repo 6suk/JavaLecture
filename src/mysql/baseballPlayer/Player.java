@@ -9,9 +9,10 @@ public class Player {
 	private LocalDate bDay;
 	private int height;
 	private int bye;
-	
-	public Player() {}
-	
+
+	public Player() {
+	}
+
 	public Player(int num, String name, String position, LocalDate bDay, int height) {
 		super();
 		this.num = num;
@@ -20,7 +21,7 @@ public class Player {
 		this.bDay = bDay;
 		this.height = height;
 	}
-	
+
 	public Player(int num, String name, String position, int height) {
 		super();
 		this.num = num;
@@ -28,7 +29,7 @@ public class Player {
 		this.position = position;
 		this.height = height;
 	}
-	
+
 	public Player(int num, String name, String position, LocalDate bDay, int height, int bye) {
 		super();
 		this.num = num;
@@ -79,7 +80,6 @@ public class Player {
 		this.height = height;
 	}
 
-	
 	public int getBye() {
 		return bye;
 	}
@@ -90,7 +90,7 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return num + " / " + name + " / " + position + " / " + bDay + " / " + height ;
+		return String.format("  %-4d | %-6s | %-6s | %s | %-3d", num, name, position, bDay, height);
 	}
-	
+
 }
