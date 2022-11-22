@@ -45,28 +45,30 @@ public class ReplyDao {
 	}
 
 	/** 1. 목록 */
-	public List<Reply> ReplyList() {
+	public List<Reply> ReplyList(int bid) {
 		Connection conn = myGetConn();
-		String sql = "SELECT * FROM reply WHERE isdel = '0' ORDER BY regTime, rid;";
+		String sql = "SELECT * FROM reply WHERE isdel = '0' AND bid = ? ORDER BY regTime, rid;";
 		List<Reply> list = new ArrayList<>();
 		
 		try {
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bid);
+			ResultSet rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
 				int rid = rs.getInt(1);
 				String rcontent = rs.getString(2);
 				String regTime = rs.getString(3);
 				int isMine = rs.getInt(4);
 				String uid = rs.getString(5);
-				int bid = rs.getInt(6);
+				int gbid = rs.getInt(6);
 				int isDel = rs.getInt(7);
 				
-				Reply reply = new Reply(rid, rcontent,regTime,isMine,uid,bid,isDel);
+				Reply reply = new Reply(rid, rcontent,regTime,isMine,uid,gbid,isDel);
 				list.add(reply);
 			}
 			
-			stmt.close();
+			pstmt.close();
 			conn.close();
 			rs.close();
 			
@@ -77,7 +79,43 @@ public class ReplyDao {
 		
 		return list;
 	}
-
+	
+//	/** 1. 목록 */
+//	public List<Reply> ReplyList() {
+//		Connection conn = myGetConn();
+//		String sql = "SELECT * FROM reply WHERE isdel = '0' ORDER BY regTime, rid;";
+//		List<Reply> list = new ArrayList<>();
+//		
+//		try {
+//			Statement stmt = conn.createStatement();
+//			ResultSet rs = stmt.executeQuery(sql);
+//			while (rs.next()) {
+//				int rid = rs.getInt(1);
+//				String rcontent = rs.getString(2);
+//				String regTime = rs.getString(3);
+//				int isMine = rs.getInt(4);
+//				String uid = rs.getString(5);
+//				int bid = rs.getInt(6);
+//				int isDel = rs.getInt(7);
+//				
+//				Reply reply = new Reply(rid, rcontent,regTime,isMine,uid,bid,isDel);
+//				list.add(reply);
+//			}
+//			
+//			stmt.close();
+//			conn.close();
+//			rs.close();
+//			
+//		} catch (SQLException e) {
+//			System.out.println("[댓글 목록 불러오기 오류] : " + e.getMessage());
+//		}
+//		
+//		
+//		return list;
+//	}
+	
+	
+	
 	/** 2. 생성 */
 	public void insertReply(Reply r) {
 		Connection conn = myGetConn();

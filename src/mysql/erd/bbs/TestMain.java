@@ -71,33 +71,46 @@ public class TestMain {
 		}
 		return false;
 	}
-
+	
+	/** main */
+	public static int selectNo() throws NumberFormatException, IOException {
+		System.out.println(
+				"---------------------------------------------------------------------------------------------");
+		System.out.println("  1.로그인 | 2.게시판 | 3.정보수정 | 4.고객탈퇴 | 5.종료");
+		System.out.println(
+				"---------------------------------------------------------------------------------------------");
+		System.out.print("  - 선택 > ");
+		return Integer.parseInt(br.readLine());
+	}
+	
 	/** 게시판 */
 	public static void boardList() throws IOException {
 		List<Bbs> bbslist = bDao.getBbsList(0);
 		System.out.println(
 				"---------------------------------------------------------------------------------------------");
-		System.out.println("  ● 게시판 목록");
+		System.out.println("  ●●● 게시판 ●●●");
 		System.out.println(
 				"---------------------------------------------------------------------------------------------");
-		System.out.printf(" 글번호\t| 제목\t\t| 작성자\t\t| 작성일 / 조회수 / 댓글수 \n");
+		System.out.printf("  글번호\t| 제목\t\t| 작성자\t\t| 작성일 / 조회수 / 댓글수 \n");
 		System.out.println("-------------------------------------------------------------------");
 		bbslist.forEach(x -> System.out.println(x));
 		System.out.println();
 		boardPlus();
 	}
 
+	/** 게시판 + */
 	public static void boardPlus() throws IOException {
 		System.out.println(
 				"---------------------------------------------------------------------------------------------");
-		System.out.println("  글번호. 게시물 보기 | #. 게시글 작성 | *. 되돌아가기");
+		System.out.println("  ● [글번호]. 게시물 보기 | [1]. 게시글 작성 | [0]. 되돌아가기");
 		System.out.println(
 				"---------------------------------------------------------------------------------------------");
 		System.out.print("  - 선택 > ");
-		String Select = br.readLine();
-		int a = Integer.valueOf(Select);
-		switch (Select) {
-		case "#":
+//		String Select = br.readLine().trim();
+		int select = Integer.parseInt(br.readLine());
+//		int a = Integer.parseInt(select);
+		switch (select) {
+		case 1:
 			if (loginresult) {
 				System.out.print("  - 제목 > ");
 				String title = br.readLine();
@@ -111,34 +124,59 @@ public class TestMain {
 			}
 
 			break;
-		case "*":
+		case 0:
 			return;
 		default:
-			if (userid == null || userid.isEmpty())
-				bDao.viewCount(a);
-			Board b = bDao.getBoardInfo(a);
-			System.out.println(b);
+			viewCountMain(select);
+			boardInfo(select);
 		}
 	}
 
-	public static void viewCountMain(Board b) {
-		int bid = b.getBid();
-		String uid = b.getUid();
-		System.out.println(bid + uid);
-		System.out.println(userid);
-		// id가 다르면 조회수 count++
-		if (userid.equals(null))
+	/** 게시판 조회수 카운트 */
+	public static void viewCountMain(int bid) {
+		Board b = bDao.getBoardInfo(bid);
+		if (userid == null || userid.isEmpty() || !userid.equals(b.getUid()))
 			bDao.viewCount(bid);
 	}
 
-	public static int selectNo() throws NumberFormatException, IOException {
-		System.out.println(
-				"---------------------------------------------------------------------------------------------");
-		System.out.println("  1.로그인 | 2.게시판 | 3.정보수정 | 4.고객탈퇴 | 5.종료");
+	public static void boardInfo(int bid) throws IOException {
+		Board b = bDao.getBoardInfo(bid);
+		List<Reply> list = rDao.ReplyList(bid);
+		System.out.println();
+		System.out.println(b);
+		System.out.println("---------------------------------------------------------------------------------------------");
+		System.out.println("  ● 댓글");
+		System.out.println("---------------------------------------------------------------------------------------------");
+		list.forEach(x -> System.out.println(x));
+		
+		System.out.println("---------------------------------------------------------------------------------------------");
+		System.out.println("  ● 1.댓글작성 | 2. 게시판");
 		System.out.println(
 				"---------------------------------------------------------------------------------------------");
 		System.out.print("  - 선택 > ");
-		return Integer.parseInt(br.readLine());
+		int Select = Integer.valueOf(br.readLine());
+		switch (Select) {
+		case 1:
+			if (loginresult) {
+				System.out.print("  - 내용 > ");
+				String content = br.readLine();
+				Reply r = new Reply(content, userid, bid);
+				rDao.insertReply(r);
+				break;
+			} else {
+				System.out.println("  [오류] 로그인을 해주세요!");
+				login();
+			}
+			break;
+		case 2:
+			boardList();
+			return;
+		default:
+			break;
+		}
+		
+		
 	}
+
 
 }

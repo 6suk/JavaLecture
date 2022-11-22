@@ -60,8 +60,9 @@ public class Board {
 
 	@Override
 	public String toString() {
-		return "Board [" + bid + ", " + btitle + ", " + bcontent + ", " + uid + ", " + modtime.toString().replace('T', ' ').substring(2,16) + ", " + viewcount + ", "
-				+ replycount + ", " + isdel + "]";
+//		return "Board [" + bid + ", " + btitle + ", " + bcontent + ", " + uid + ", " + modtime.toString().replace('T', ' ').substring(2,16) + ", " + viewcount + ", "
+//				+ replycount + ", " + isdel + "]";
+		return String.format("  [ %d | %s ]\n  작성자 [%s] | 작성일 [%s] | 조회수 [%d] | 댓글수 [%d]\n\n  %s\n",bid,btitle ,uid,modtime.toString().replace('T', ' ').substring(2,10),viewcount,replycount,bcontent);
 	}
 
 	public int getBid() {
