@@ -1,4 +1,4 @@
-package mysql.erd;
+package mysql.erd.bbs;
 
 import java.io.*;
 import java.sql.*;

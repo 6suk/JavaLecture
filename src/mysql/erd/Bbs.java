@@ -39,7 +39,7 @@ public class Bbs {
 	public String toString() {
 //		return "" + bid + ", " + btitle + ", " + uname + ", " + modTime.toString().replace('T', ' ').substring(2,16) + ", "
 //				+ viewCount + ", " + replyCount;
-		return String.format(" %3d\t| %-12s\t| %-4s\t| %s | %-2d | %-2d ", bid,btitle,uname,modTime.toString().replace('T', ' ').substring(2,16),viewCount,replyCount);
+		return String.format(" %3d\t| %-10s\t| %-4s\t| %s | %-2d | %-2d ", bid,btitle,uname,modTime.toString().replace('T', ' ').substring(2,16),viewCount,replyCount);
 		
 	}
 

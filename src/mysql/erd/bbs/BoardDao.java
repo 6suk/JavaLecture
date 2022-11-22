@@ -1,8 +1,10 @@
-package mysql.erd;
+package mysql.erd.bbs;
 
 import java.io.*;
 import java.sql.*;
 import java.util.*;
+
+import mysql.erd.Bbs;
 
 public class BoardDao {
 
