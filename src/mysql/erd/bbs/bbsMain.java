@@ -10,7 +10,7 @@ import mysql.customer.DAO;
 
 public class bbsMain {
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	public static DAO userdao = new DAO();
+	public static UsersDao userdao = new UsersDao();
 
 	public static void main(String[] args) throws IOException {
 		
@@ -45,7 +45,7 @@ public class bbsMain {
 	
 	/** login */
 	public static void login(String uid, String pwd) {
-		Users user = dao.getUserInfo(uid);
+		Users user = userdao.getUserInfo(uid);
 		if(!uid.equals(user.getUid()))
 			System.err.println("존재하지 않는 아이디입니다.");
 		else {
