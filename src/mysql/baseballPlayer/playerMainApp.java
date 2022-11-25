@@ -4,7 +4,6 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.List;
 
-import mysql.customer.Customer;
 
 public class playerMainApp {
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,28 +21,29 @@ public class playerMainApp {
 			System.out.println();
 
 			switch (selectNo) {
-			case 1:
-				playerList();
-				break;
-			case 2:
-				newPlayer();
-				break;
-			case 3:
-				updatePlayer();
-				break;
-			case 4:
-				byePlayer();
-				break;
-			case 5:
-				welcomePlayer();
-				break;
-			case 6:
-				System.out.println("  [프로그램 종료]");
-				br.close();
-				run = false;
-				break;
-			default:
-				System.out.println("  [오류] : 1에서 5까지의 숫자만 입력하세요!");
+				case 1:
+					playerList();
+					break;
+				case 2:
+					newPlayer();
+					break;
+				case 3:
+					updatePlayer();
+					break;
+				case 4:
+					byePlayer();
+					break;
+				case 5:
+					welcomePlayer();
+					break;
+				case 6:
+					System.out.println("  [프로그램 종료]");
+					br.close();
+					run = false;
+					break;
+				default:
+					System.out.println("  [오류] : 1에서 5까지의 숫자만 입력하세요!");
+
 			}
 		}
 	}
@@ -87,7 +87,7 @@ public class playerMainApp {
 		if(btmp.equals("0")) return;
 		LocalDate b = LocalDate.parse(btmp);
 		System.out.print("  - 키 > ");
-		int h = Integer.valueOf(br.readLine());
+		int h = Integer.parseInt(br.readLine());
 		if(h==0)return;
 
 		Player p = new Player(num, name, position, b, h);
@@ -124,7 +124,7 @@ public class playerMainApp {
 		System.out.print("  - 변경할 키 > ");
 		String h = br.readLine();
 		if(h.equals("0"))return;
-		int height = (h.equals("")) ? p.getHeight() : Integer.valueOf(h);
+		int height = (h.equals("")) ? p.getHeight() : Integer.parseInt(h);
 
 		Player uP = new Player(num, name, position, height);
 		dao.updatePlayer(uP);
@@ -142,7 +142,7 @@ public class playerMainApp {
 		
 		
 		System.out.print("  - 방출할 선수 등번호 > ");
-		int num = Integer.valueOf(br.readLine());
+		int num = Integer.parseInt(br.readLine());
 		if (num == 0) return;
 
 		dao.byePlayer(num);
@@ -159,7 +159,7 @@ public class playerMainApp {
 		p.forEach(x -> System.out.println("  "+x));
 		System.out.println();
 		System.out.print("  - 재영입할 선수 등번호 > ");
-		int num = Integer.valueOf(br.readLine());
+		int num = Integer.parseInt(br.readLine());
 		if(num == 0) return;
 		dao.welcomPlayer(num);
 	}

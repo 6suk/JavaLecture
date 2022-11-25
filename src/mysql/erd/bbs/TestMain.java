@@ -2,10 +2,7 @@ package mysql.erd.bbs;
 
 import java.io.*;
 import java.util.List;
-
 import org.mindrot.jbcrypt.BCrypt;
-
-import mysql.erd.Bbs;
 
 public class TestMain {
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -43,9 +40,8 @@ public class TestMain {
 
 	/** login */
 	public static boolean login() throws IOException {
-		boolean run = true;
 
-		while (run) {
+		while (true) {
 			System.out.print("아이디 입력 > ");
 			String uid = br.readLine();
 			System.out.print("비밀번호 입력 > ");
@@ -69,7 +65,6 @@ public class TestMain {
 				}
 			}
 		}
-		return false;
 	}
 	
 	/** main */
@@ -93,7 +88,7 @@ public class TestMain {
 				"---------------------------------------------------------------------------------------------");
 		System.out.printf("  글번호\t| 제목\t\t| 작성자\t\t| 작성일 / 조회수 / 댓글수 \n");
 		System.out.println("-------------------------------------------------------------------");
-		bbslist.forEach(x -> System.out.println(x));
+		bbslist.forEach(System.out::println);
 		System.out.println();
 		boardPlus();
 	}
@@ -147,14 +142,14 @@ public class TestMain {
 		System.out.println("---------------------------------------------------------------------------------------------");
 		System.out.println("  ● 댓글");
 		System.out.println("---------------------------------------------------------------------------------------------");
-		list.forEach(x -> System.out.println(x));
+		list.forEach(System.out::println);
 		
 		System.out.println("---------------------------------------------------------------------------------------------");
 		System.out.println("  ● 1.댓글작성 | 2. 게시판");
 		System.out.println(
 				"---------------------------------------------------------------------------------------------");
 		System.out.print("  - 선택 > ");
-		int Select = Integer.valueOf(br.readLine());
+		int Select = Integer.parseInt(br.readLine());
 		switch (Select) {
 		case 1:
 			if (loginresult) {

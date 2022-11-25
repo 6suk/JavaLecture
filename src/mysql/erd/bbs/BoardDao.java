@@ -4,8 +4,6 @@ import java.io.*;
 import java.sql.*;
 import java.util.*;
 
-import mysql.erd.Bbs;
-
 public class BoardDao {
 
 	public static UsersDao userdao = new UsersDao();

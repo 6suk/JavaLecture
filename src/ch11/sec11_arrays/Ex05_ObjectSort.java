@@ -14,6 +14,6 @@ public class Ex05_ObjectSort {
 		for(Ex05_Member a : memberList)
 			System.out.println(a);
 	}
-		Arrays.sort(memberList);
+//		Arrays.sort(memberList);
 
 }

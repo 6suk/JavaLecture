@@ -2,8 +2,6 @@ package mysql.erd.bbs;
 
 import java.util.List;
 
-import mysql.erd.Bbs;
-
 public class BoardTest {
 	
 //	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
