@@ -127,6 +127,7 @@ public class TestMain {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public static void boardInfo(int bid) throws IOException {
 		Board b = bDao.getBoardInfo(bid);
 		List<Reply> list = rDao.ReplyList(bid);
@@ -164,6 +165,16 @@ public class TestMain {
 		}
 		
 		
+=======
+	public static int selectNo() throws NumberFormatException, IOException {
+		System.out.println(
+				"---------------------------------------------------------------------------------------------");
+		System.out.println("  1.로그인 | 2.게시판 | 3.정보수정 | 4.고객탈퇴 | 5.종료");
+		System.out.println(
+				"---------------------------------------------------------------------------------------------");
+		System.out.print("  - 선택 > ");
+		return Integer.parseInt(br.readLine());
+>>>>>>> parent of b7adf71 (feat : board / reply 기능 추가)
 =======
 	public static int selectNo() throws NumberFormatException, IOException {
 		System.out.println(
