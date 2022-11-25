@@ -41,7 +41,7 @@ public class Reply {
 		this.rcontent = rcontent;
 		this.regtime = regtime;
 		Board board = boardDao.getBoardInfo(bid);
-		if (board.getUid() == uid)
+		if (board.getBid() == bid)
 			this.ismine = 1;
 		this.uid = uid;
 		this.bid = bid;
@@ -54,7 +54,7 @@ public class Reply {
 		this.rcontent = rcontent;
 		this.regtime = LocalDateTime.parse(regtime, dtf);
 		Board board = boardDao.getBoardInfo(bid);
-		if (board.getUid() == uid)
+		if (board.getBid() == bid)
 			this.ismine = 1;
 		this.uid = uid;
 		this.bid = bid;
@@ -70,15 +70,8 @@ public class Reply {
 
 	@Override
 	public String toString() {
-//		return "[" + rid + ", " + rcontent + ", " + regtime.toString().replace('T', ' ').substring(2, 16) + ", "
-//				+ ismine + ", " + uid + ", " + bid + ", " + isdel + "]";
-		
-		String ismineP = "댓글";
-		if(this.ismine == 1) {
-			ismineP = "내가 작성한 댓글";
-			}
-		
-		return String.format("  [%s] %s | %s | %s",uid,rcontent,regtime.toString().replace('T', ' ').substring(2, 16),ismineP);
+		return "[" + rid + ", " + rcontent + ", " + regtime.toString().replace('T', ' ').substring(2, 16) + ", "
+				+ ismine + ", " + uid + ", " + bid + ", " + isdel + "]";
 	}
 
 	public int getRid() {

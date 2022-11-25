@@ -66,46 +66,33 @@ public class TestMain {
 			}
 		}
 	}
-	
-	/** main */
-	public static int selectNo() throws NumberFormatException, IOException {
-		System.out.println(
-				"---------------------------------------------------------------------------------------------");
-		System.out.println("  1.로그인 | 2.게시판 | 3.정보수정 | 4.고객탈퇴 | 5.종료");
-		System.out.println(
-				"---------------------------------------------------------------------------------------------");
-		System.out.print("  - 선택 > ");
-		return Integer.parseInt(br.readLine());
-	}
-	
+
 	/** 게시판 */
 	public static void boardList() throws IOException {
 		List<Bbs> bbslist = bDao.getBbsList(0);
 		System.out.println(
 				"---------------------------------------------------------------------------------------------");
-		System.out.println("  ●●● 게시판 ●●●");
+		System.out.println("  ● 게시판 목록");
 		System.out.println(
 				"---------------------------------------------------------------------------------------------");
-		System.out.printf("  글번호\t| 제목\t\t| 작성자\t\t| 작성일 / 조회수 / 댓글수 \n");
+		System.out.printf(" 글번호\t| 제목\t\t| 작성자\t\t| 작성일 / 조회수 / 댓글수 \n");
 		System.out.println("-------------------------------------------------------------------");
 		bbslist.forEach(System.out::println);
 		System.out.println();
 		boardPlus();
 	}
 
-	/** 게시판 + */
 	public static void boardPlus() throws IOException {
 		System.out.println(
 				"---------------------------------------------------------------------------------------------");
-		System.out.println("  ● [글번호]. 게시물 보기 | [1]. 게시글 작성 | [0]. 되돌아가기");
+		System.out.println("  글번호. 게시물 보기 | #. 게시글 작성 | *. 되돌아가기");
 		System.out.println(
 				"---------------------------------------------------------------------------------------------");
 		System.out.print("  - 선택 > ");
-//		String Select = br.readLine().trim();
-		int select = Integer.parseInt(br.readLine());
-//		int a = Integer.parseInt(select);
-		switch (select) {
-		case 1:
+		String Select = br.readLine();
+		int a = Integer.valueOf(Select);
+		switch (Select) {
+		case "#":
 			if (loginresult) {
 				System.out.print("  - 제목 > ");
 				String title = br.readLine();
@@ -119,21 +106,27 @@ public class TestMain {
 			}
 
 			break;
-		case 0:
+		case "*":
 			return;
 		default:
-			viewCountMain(select);
-			boardInfo(select);
+			if (userid == null || userid.isEmpty())
+				bDao.viewCount(a);
+			Board b = bDao.getBoardInfo(a);
+			System.out.println(b);
 		}
 	}
 
-	/** 게시판 조회수 카운트 */
-	public static void viewCountMain(int bid) {
-		Board b = bDao.getBoardInfo(bid);
-		if (userid == null || userid.isEmpty() || !userid.equals(b.getUid()))
+	public static void viewCountMain(Board b) {
+		int bid = b.getBid();
+		String uid = b.getUid();
+		System.out.println(bid + uid);
+		System.out.println(userid);
+		// id가 다르면 조회수 count++
+		if (userid.equals(null))
 			bDao.viewCount(bid);
 	}
 
+<<<<<<< HEAD
 	public static void boardInfo(int bid) throws IOException {
 		Board b = bDao.getBoardInfo(bid);
 		List<Reply> list = rDao.ReplyList(bid);
@@ -171,7 +164,16 @@ public class TestMain {
 		}
 		
 		
+=======
+	public static int selectNo() throws NumberFormatException, IOException {
+		System.out.println(
+				"---------------------------------------------------------------------------------------------");
+		System.out.println("  1.로그인 | 2.게시판 | 3.정보수정 | 4.고객탈퇴 | 5.종료");
+		System.out.println(
+				"---------------------------------------------------------------------------------------------");
+		System.out.print("  - 선택 > ");
+		return Integer.parseInt(br.readLine());
+>>>>>>> parent of b7adf71 (feat : board / reply 기능 추가)
 	}
-
 
 }
