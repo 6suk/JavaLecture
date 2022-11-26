@@ -16,7 +16,7 @@ public class UsersDao {
 	/** DB접속 정보 가져오기 */
 	UsersDao() {
 		try {
-			InputStream is = new FileInputStream("D:/[6suk] 개인작업/[멀티캠퍼스]/0. Workspace/mysql.properties");
+			InputStream is = new FileInputStream("D:/1.개인작업/Multicampus/Workspace/mysql.properties");
 			Properties props = new Properties();
 			props.load(is);
 			is.close();

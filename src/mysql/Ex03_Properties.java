@@ -6,7 +6,7 @@ import java.util.*;
 public class Ex03_Properties {
 	public static void main(String[] args) {
 		try {
-			InputStream is = new FileInputStream("D:/[6suk] 개인작업/[멀티캠퍼스]/0. Workspace/mysql.properties");
+			InputStream is = new FileInputStream("D:/1.개인작업/Multicampus/Workspace/mysql.properties");
 			Properties props = new Properties();
 			props.load(is);
 			is.close();
